@@ -1,0 +1,568 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/wubzz/pdf-merge"
+
+    >pdf-merge (v0.1.0)</a>
+</h1>
+<h4>Merge PDF files into a single PDF document</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pdf-merge">module pdf-merge</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.pdf-merge">
+            function <span class="apidocSignatureSpan"></span>pdf-merge
+            <span class="apidocSignatureSpan">(pdfFiles, pdftkPath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge">
+            function <span class="apidocSignatureSpan">pdf-merge.</span>PdfMerge
+            <span class="apidocSignatureSpan">(pdfFiles, pdftkPath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">pdf-merge.</span>PdfMerge.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pdf-merge.PdfMerge">module pdf-merge.PdfMerge</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.PdfMerge">
+            function <span class="apidocSignatureSpan">pdf-merge.</span>PdfMerge
+            <span class="apidocSignatureSpan">(pdfFiles, pdftkPath)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.pdf-merge.PdfMerge.prototype">module pdf-merge.PdfMerge.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.prototype.asBuffer">
+            function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>asBuffer
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.prototype.asNewFile">
+            function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>asNewFile
+            <span class="apidocSignatureSpan">(path)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.prototype.asReadStream">
+            function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>asReadStream
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.prototype.keepTmpFile">
+            function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>keepTmpFile
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.prototype.merge">
+            function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>merge
+            <span class="apidocSignatureSpan">(callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.pdf-merge.PdfMerge.prototype.promise">
+            function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>promise
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pdf-merge" id="apidoc.module.pdf-merge">module pdf-merge</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.pdf-merge" id="apidoc.element.pdf-merge.pdf-merge">
+        function <span class="apidocSignatureSpan"></span>pdf-merge
+        <span class="apidocSignatureSpan">(pdfFiles, pdftkPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PDFMerge(pdfFiles, pdftkPath) {
+	if(!_(pdfFiles).isArray() || pdfFiles.length === 0) {
+		throw new Error(&#x27;pdfFiles must be an array of absolute file paths.&#x27;);
+	}
+
+	this.pdftkPath = pdftkPath;
+	if(pdftkPath &#x26;&#x26; !fs.existsSync(pdftkPath)) {
+		throw new Error(&#x27;Path to PDFtk is incorrect.&#x27;);
+	}
+
+	//Windows: Demand path to lib
+	if(isWindowsPlatform()) {
+		this.isWin = true;
+	}
+
+	//Array of files
+	this.pdfFiles = pdfFiles;
+
+	//Get an available temporary filePath to be used in PDFtk
+	this.tmpFilePath = tmp.tmpNameSync();
+
+	//Setup Arguments to be used when calling PDFtk
+	this.execArgs = assembleExecArgs.call(this);
+
+	//Default Mode &#x27;BUFFER&#x27;;
+	this.mode = &#x27;BUFFER&#x27;;
+
+	//Default dont keep the temporary file
+	this.keepTmpFile = false;
+
+	return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge" id="apidoc.element.pdf-merge.PdfMerge">
+        function <span class="apidocSignatureSpan">pdf-merge.</span>PdfMerge
+        <span class="apidocSignatureSpan">(pdfFiles, pdftkPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PDFMerge(pdfFiles, pdftkPath) {
+	if(!_(pdfFiles).isArray() || pdfFiles.length === 0) {
+		throw new Error(&#x27;pdfFiles must be an array of absolute file paths.&#x27;);
+	}
+
+	this.pdftkPath = pdftkPath;
+	if(pdftkPath &#x26;&#x26; !fs.existsSync(pdftkPath)) {
+		throw new Error(&#x27;Path to PDFtk is incorrect.&#x27;);
+	}
+
+	//Windows: Demand path to lib
+	if(isWindowsPlatform()) {
+		this.isWin = true;
+	}
+
+	//Array of files
+	this.pdfFiles = pdfFiles;
+
+	//Get an available temporary filePath to be used in PDFtk
+	this.tmpFilePath = tmp.tmpNameSync();
+
+	//Setup Arguments to be used when calling PDFtk
+	this.execArgs = assembleExecArgs.call(this);
+
+	//Default Mode &#x27;BUFFER&#x27;;
+	this.mode = &#x27;BUFFER&#x27;;
+
+	//Default dont keep the temporary file
+	this.keepTmpFile = false;
+
+	return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pdf-merge.PdfMerge" id="apidoc.module.pdf-merge.PdfMerge">module pdf-merge.PdfMerge</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.PdfMerge" id="apidoc.element.pdf-merge.PdfMerge.PdfMerge">
+        function <span class="apidocSignatureSpan">pdf-merge.</span>PdfMerge
+        <span class="apidocSignatureSpan">(pdfFiles, pdftkPath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PDFMerge(pdfFiles, pdftkPath) {
+	if(!_(pdfFiles).isArray() || pdfFiles.length === 0) {
+		throw new Error(&#x27;pdfFiles must be an array of absolute file paths.&#x27;);
+	}
+
+	this.pdftkPath = pdftkPath;
+	if(pdftkPath &#x26;&#x26; !fs.existsSync(pdftkPath)) {
+		throw new Error(&#x27;Path to PDFtk is incorrect.&#x27;);
+	}
+
+	//Windows: Demand path to lib
+	if(isWindowsPlatform()) {
+		this.isWin = true;
+	}
+
+	//Array of files
+	this.pdfFiles = pdfFiles;
+
+	//Get an available temporary filePath to be used in PDFtk
+	this.tmpFilePath = tmp.tmpNameSync();
+
+	//Setup Arguments to be used when calling PDFtk
+	this.execArgs = assembleExecArgs.call(this);
+
+	//Default Mode &#x27;BUFFER&#x27;;
+	this.mode = &#x27;BUFFER&#x27;;
+
+	//Default dont keep the temporary file
+	this.keepTmpFile = false;
+
+	return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.pdf-merge.PdfMerge.prototype" id="apidoc.module.pdf-merge.PdfMerge.prototype">module pdf-merge.PdfMerge.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.prototype.asBuffer" id="apidoc.element.pdf-merge.PdfMerge.prototype.asBuffer">
+        function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>asBuffer
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">asBuffer = function () {
+	this.mode = &#x27;BUFFER&#x27;;
+	return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```javascript
+var PDFMerge = require(&#x27;pdf-merge&#x27;);
+var pdftkPath = &#x27;C:\\PDFtk\\bin\\pdftk.exe&#x27;;
+var pdfFiles = [__dirname + &#x27;/pdf1.pdf&#x27;, __dirname + &#x27;/pdf2.pdf&#x27;];
+var pdfMerge = new PDFMerge(pdfFiles, pdftkPath);
+
+pdfMerge
+.<span class="apidocCodeKeywordSpan">asBuffer</span>()
+.merge(function(error, buffer) {
+  //fs.writeFileSync(__dirname + &#x27;/merged.pdf&#x27;, buffer);
+});
+
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.prototype.asNewFile" id="apidoc.element.pdf-merge.PdfMerge.prototype.asNewFile">
+        function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>asNewFile
+        <span class="apidocSignatureSpan">(path)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">asNewFile = function (path) {
+	this.mode        = &#x27;NEWFILE&#x27;;
+	this.newFilePath = path;
+	return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.asReadStream().merge(function(error, readStream) {...});
+```
+
+**asNewFile(`filePath`)** -- Store the output in a new file at the given filePath.
+```
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.<span class="apidocCodeKeywordSpan">asNewFile</span>(&#x27;merged.pdf&#x27;).merge(function(error, filePath) {...});
+```
+
+**keepTmpFile()** -- Keep the temporary file that is created when running PDFtk. For whatever reason..
+```
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.keepTmpFile().merge(function(error, buffer) {...});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.prototype.asReadStream" id="apidoc.element.pdf-merge.PdfMerge.prototype.asReadStream">
+        function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>asReadStream
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">asReadStream = function () {
+	this.mode = &#x27;READSTREAM&#x27;;
+	return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.merge(function(error, result) {});
+```
+
+**promise()** -- Promise style. Result is mixed, see the Chainable Options below. By default, a Buffer is always returned.
+```
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.<span class="apidocCodeKeywordSpan">asReadStream</span>().promise()
+.then(function(readStream) {...})
+.catch(function(error) {...});
+```
+
+### API - Chainable Settings
+**asBuffer()** -- Result will be a Buffer of the merged PDF document.
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.prototype.keepTmpFile" id="apidoc.element.pdf-merge.PdfMerge.prototype.keepTmpFile">
+        function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>keepTmpFile
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">keepTmpFile = function () {
+	this.keepTmpFile = true;
+	return true;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.asNewFile(&#x27;merged.pdf&#x27;).merge(function(error, filePath) {...});
+```
+
+**keepTmpFile()** -- Keep the temporary file that is created when running PDFtk. For whatever reason..
+```
+var pdfMerge = new PDFMerge([...]);
+pdfMerge.<span class="apidocCodeKeywordSpan">keepTmpFile</span>().merge(function(error, buffer) {...});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.prototype.merge" id="apidoc.element.pdf-merge.PdfMerge.prototype.merge">
+        function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>merge
+        <span class="apidocSignatureSpan">(callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">merge = function (callback) {
+	var mode        = this.mode;
+	var keepTmpFile = this.keepTmpFile; //Keep the Tmp File?
+	var tmpFilePath = this.tmpFilePath; //Filepath for PDF file being created by PDFtk
+	var newFilePath = this.newFilePath; //MODE === &#x27;NEWFILE&#x27;
+
+	//Windows or not, different syntax
+	if(this.pdftkPath) {
+		child.execFile(this.pdftkPath, this.execArgs, execCallbackHandler)
+	} else {
+		child.exec(&#x27;pdftk &#x27; + this.execArgs.join(&#x27; &#x27;), execCallbackHandler);
+	}
+
+	/**
+	 * ErrorHandler for when PDFtk has been executed.
+	 * @param error
+	 * @returns {*}
+	 */
+	function execCallbackHandler(error) {
+		if(error) {
+			return callback(error);
+		}
+
+		/**
+		 * BUFFER/NEWFILE processed the same way.
+		 * For NEWFILE, it stores the buffer in a new file.
+		 */
+		if(mode === &#x27;BUFFER&#x27; || mode === &#x27;NEWFILE&#x27;) {
+			fs.readFile(tmpFilePath, function(error, buffer) {
+				if(error) {
+					return callback(error);
+				}
+				deleteFile();
+
+				if(mode !== &#x27;NEWFILE&#x27;) {
+					return callback(null, buffer);
+				}
+
+				fs.writeFile(newFilePath, buffer, function(error) {
+					return callback(error, newFilePath);
+				})
+			});
+		} else if(mode === &#x27;READSTREAM&#x27;) {
+			var readStream = fs.createReadStream(tmpFilePath);
+			callback(null, readStream);
+			readStream.on(&#x27;end&#x27;, function() {
+				deleteFile();
+			});
+		}
+	}
+
+	/**
+	 * Cleanup the temporary file created through PDFtk.
+	 * Don&#x27;t cleanup if keepTmpFile === true
+	 */
+	function deleteFile() {
+		if(!keepTmpFile) {
+			fs.unlink(tmpFilePath, function() {});
+		}
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var PDFMerge = require(&#x27;pdf-merge&#x27;);
+var pdftkPath = &#x27;C:\\PDFtk\\bin\\pdftk.exe&#x27;;
+var pdfFiles = [__dirname + &#x27;/pdf1.pdf&#x27;, __dirname + &#x27;/pdf2.pdf&#x27;];
+var pdfMerge = new PDFMerge(pdfFiles, pdftkPath);
+
+pdfMerge
+.asBuffer()
+.<span class="apidocCodeKeywordSpan">merge</span>(function(error, buffer) {
+  //fs.writeFileSync(__dirname + &#x27;/merged.pdf&#x27;, buffer);
+});
+
+```
+
+
+### Usage
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.pdf-merge.PdfMerge.prototype.promise" id="apidoc.element.pdf-merge.PdfMerge.prototype.promise">
+        function <span class="apidocSignatureSpan">pdf-merge.PdfMerge.prototype.</span>promise
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">promise = function () {
+	var def = Q.defer();
+
+	this.merge(function(error, result) {
+		if(error) {
+			return def.reject(error);
+		}
+
+		def.resolve(result);
+	});
+
+	return def.promise;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+//Callback-style
+pdfMerge.merge(function(error, result) {
+//Handle your error / result here
+});
+
+//Promise-style
+pdfMerge.<span class="apidocCodeKeywordSpan">promise</span>().then(function(result) {
+//Handle result
+}).catch(function(error) {
+//Handle error
+});
+```
+
+### API - Main
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
